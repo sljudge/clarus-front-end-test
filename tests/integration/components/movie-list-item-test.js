@@ -12,6 +12,5 @@ module('Integration | Component | MovieListHeader', function (hooks) {
 
     assert.dom('h2').hasText('TEST TITLE');
     assert.dom('p').hasText('TEST DESCRIPTION');
-    // assert.dom('button').hasText('Delete Film');
   });
 });

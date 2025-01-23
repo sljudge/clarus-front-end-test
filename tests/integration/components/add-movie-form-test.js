@@ -23,9 +23,9 @@ module('Integration | Component | AddMovieForm', function (hooks) {
   test('it adds a movie and clears the input fields on successful submission', async function (assert) {
     const firebaseService = this.owner.lookup('service:firebase');
 
-    this.set('loadMovies', () => {
+    this.loadMovies = () => {
       assert.ok(true, 'loadMovies was called');
-    });
+    };
 
     firebaseService.addMovie = (title, description) => {
       assert.deepEqual(
@@ -62,9 +62,9 @@ module('Integration | Component | AddMovieForm', function (hooks) {
   test('it displays an error message on failed submission', async function (assert) {
     const firebaseService = this.owner.lookup('service:firebase');
 
-    this.set('loadMovies', () => {
+    this.loadMovies = () => {
       assert.ok(true);
-    });
+    };
 
     firebaseService.addMovie = (title, description) => {
       assert.deepEqual(title, 'Inception');
