@@ -1,11 +1,12 @@
 <li class={{this.styleNamespace}}>
-  <div class='details'>
+  <div class="details">
+    {{!-- {{log this.movies "log"}} --}}
     <h2>
-      {{@movie.title}}
+      {{this.movies.title}}
     </h2>
 
     <p>
-      {{this.movie.description}}
+      {{@movie.description}}
     </p>
   </div>
 </li>
