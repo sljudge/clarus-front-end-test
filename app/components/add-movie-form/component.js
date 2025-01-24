@@ -2,10 +2,12 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 import podNames from 'ember-component-css/pod-names';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { service } from '@ember/service';
 
 export default class AddMovieForm extends Component {
   styleNamespace = podNames['add-movie-form'];
+
+  @service firebase;
 
   @tracked description;
 
@@ -13,16 +15,16 @@ export default class AddMovieForm extends Component {
 
   @tracked errorMessage;
 
-  @action async addMovie(event) {
+  @action
+  async addMovie(event) {
     event.preventDefault();
 
     this.errorMessage = undefined;
 
     try {
-      const { descriptionx, title } = this;
-      const db = getFirestore();
+      const { description, title } = this;
 
-      await addDoc(collection(db, 'movies'), { descriptionx, title });
+      await this.firebase.addMovie(title, description);
 
       this.description = undefined;
       this.title = undefined;
