@@ -2,9 +2,19 @@ import { action } from '@ember/object';
 import { collection, getFirestore, getDocs } from 'firebase/firestore';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
+// @ts-expect-error - no types for package(?)
 import podNames from 'ember-component-css/pod-names';
+import type { Movie, MovieSnapshot } from 'types';
 
-export default class LandingPage extends Component {
+interface LandingPageSignature {
+  Args: {};
+  Blocks: {
+    default: [movies: Movie[]];
+  };
+  Element: HTMLDivElement;
+}
+
+export default class LandingPage extends Component<LandingPageSignature> {
   styleNamespace = podNames['landing-page'];
 
   /**
@@ -20,20 +30,20 @@ export default class LandingPage extends Component {
    *   await deleteDoc(movie.ref);
    *
    */
-  @tracked movies;
+  @tracked movies: MovieSnapshot[];
 
   @action async loadMovies() {
     const db = getFirestore();
     const moviesRef = collection(db, 'movies');
     const moviesSnapshot = await getDocs(moviesRef);
-    const movies = [];
+    const movies: MovieSnapshot[] = [];
 
-    moviesSnapshot.forEach((doc) => movies.push(doc));
+    moviesSnapshot.forEach((doc) => movies.push(doc as MovieSnapshot));
 
     this.movies = movies;
   }
 
-  constructor(owner, args) {
+  constructor(owner: unknown, args: {}) {
     super(owner, args);
 
     this.loadMovies();
