@@ -1,4 +1,4 @@
-<form class={{this.styleNamespace}} {{on "submit" this.addMovie}}>
+<form class={{this.styleNamespace}} {{on "submit" this.handleFormSubmit}}>
   <label data-test-title-label>
     <span>
       Title
@@ -48,7 +48,7 @@
     {{this.ctaText}}
   </button>
   {{#if this.showDeleteCta}}
-    <button class="delete-cta">
+    <button class="delete-cta" {{on "click" this.deleteMovie}}>
       Delete movie
     </button>
   {{/if}}

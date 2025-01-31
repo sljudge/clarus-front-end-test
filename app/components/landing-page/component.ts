@@ -45,6 +45,7 @@ export default class LandingPage extends Component<LandingPageSignature> {
     moviesSnapshot.forEach((doc) => movies.push(doc as MovieSnapshot));
 
     this.movies = movies;
+    this.closeMovieForm();
   }
 
   @action closeMovieForm() {

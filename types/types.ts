@@ -8,5 +8,7 @@ export type Movie = {
 export type MovieSnapshot = QueryDocumentSnapshot<Movie>;
 
 export interface Firebase {
-  addMovie(title: string, description: string): void;
+  addMovie(title: string, description: string): Promise<any>;
+  deleteMovie(movie: MovieSnapshot): Promise<any>;
+  updateMovie(ref: MovieSnapshot['ref'], data: Movie): Promise<any>;
 }

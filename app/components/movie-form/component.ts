@@ -56,6 +56,54 @@ export default class MovieForm extends Component<MovieFormSignature> {
     }
   }
 
+  @action async editMovie(event: SubmitEvent) {
+    event.preventDefault();
+    try {
+      if (!this.args.activeMovie) {
+        this.errorMessage = 'There is no active movie';
+        return;
+      }
+      if (!this.description || !this.title) {
+        this.errorMessage = 'Title and description are required';
+        return;
+      }
+      await this.firebase.updateMovie(this.args.activeMovie.ref, {
+        description: this.description as string,
+        title: this.title as string,
+      });
+      this.description = undefined;
+      this.title = undefined;
+      this.args.loadMovies();
+    } catch (error: any) {
+      this.errorMessage = error?.message;
+    }
+  }
+
+  @action async deleteMovie(event: SubmitEvent) {
+    event.preventDefault();
+    try {
+      if (!this.args.activeMovie) {
+        this.errorMessage = 'There is no active movie';
+        return;
+      }
+      await this.firebase.deleteMovie(this.args.activeMovie);
+      this.description = undefined;
+      this.title = undefined;
+      this.args.loadMovies();
+    } catch (error: any) {
+      this.errorMessage = error?.message;
+    }
+  }
+
+  @action handleFormSubmit(event: SubmitEvent) {
+    event.preventDefault();
+    if (this.args.status === 'add') {
+      this.addMovie(event);
+    } else if (this.args.status === 'edit') {
+      this.editMovie(event);
+    }
+  }
+
   get ctaText() {
     return this.args.status === 'add'
       ? 'Add movie'
