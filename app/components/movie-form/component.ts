@@ -60,7 +60,11 @@ export default class MovieForm extends Component<MovieFormSignature> {
     return this.args.status === 'add'
       ? 'Add movie'
       : this.args.status === 'edit'
-        ? 'Edit movie'
+        ? 'Save'
         : '';
+  }
+
+  get showDeleteCta() {
+    return this.args.status === 'edit';
   }
 }

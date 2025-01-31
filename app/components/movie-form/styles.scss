@@ -27,7 +27,7 @@
     border-radius: 0.5rem;
 
     &:focus {
-      border: 0.2rem solid #e91c50;
+      border: 0.2rem solid #d9f99d;
       outline: none;
     }
   }
@@ -48,20 +48,16 @@
     margin-top: 1.5rem;
     padding: 1rem;
 
-    background-color: #e91c50;
     color: #ffffff;
 
     border: none;
     cursor: pointer;
-
-    &:hover,
-    &:focus {
-      background-color: lighten(#e91c50, 5%);
-      text-decoration: underline;
-    }
-
-    &:active {
-      background-color: darken(#e91c50, 10%);
-    }
+  }
+  .save-cta {
+    background: #d9f99d;
+    color: black;
+  }
+  .delete-cta {
+    background: red;
   }
 }
