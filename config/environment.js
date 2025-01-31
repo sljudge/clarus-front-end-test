@@ -22,6 +22,13 @@ module.exports = function (environment) {
 
   ENV.firebase = {
     // add firebase config here
+    apiKey: 'AIzaSyBApoDSaPUu6c5Z7HqmP1YHuJLNbtOp4Ds',
+    authDomain: 'clarus-frontend-technical.firebaseapp.com',
+    projectId: 'clarus-frontend-technical',
+    storageBucket: 'clarus-frontend-technical.firebasestorage.app',
+    messagingSenderId: '586628175697',
+    appId: '1:586628175697:web:9b27188c9e33d0f5962570',
+    projectId: 'clarus-frontend-technical',
   };
 
   if (environment === 'test') {
