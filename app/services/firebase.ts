@@ -13,11 +13,8 @@ import type { MovieSnapshot, Movie } from 'types';
 export default class FirebaseService extends Service {
   db = config.environment === 'test' ? undefined : getFirestore();
 
-  async addMovie(title: string, description: string) {
-    await addDoc(collection(this.db as Firestore, 'movies'), {
-      description,
-      title,
-    });
+  async addMovie(data: Movie) {
+    await addDoc(collection(this.db as Firestore, 'movies'), data);
   }
 
   async deleteMovie(movie: MovieSnapshot) {

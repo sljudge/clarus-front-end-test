@@ -29,7 +29,13 @@ export default class MovieForm extends Component<MovieFormSignature> {
 
   @tracked title: string | undefined = this.args.activeMovie?.data().title;
 
+  @tracked rating: string | undefined = this.args.activeMovie?.data().rating;
+
   @tracked errorMessage: string | undefined;
+
+  @action updateRating(event: Event) {
+    this.rating = (event.target as HTMLSelectElement)?.value;
+  }
 
   @action
   async addMovie(event: SubmitEvent) {
@@ -38,14 +44,14 @@ export default class MovieForm extends Component<MovieFormSignature> {
     this.errorMessage = undefined;
 
     try {
-      const { description, title } = this;
+      const { description, title, rating } = this;
 
       if (!description || !title) {
         this.errorMessage = 'Title and description are required';
         return;
       }
 
-      await this.firebase.addMovie(title, description);
+      await this.firebase.addMovie({ title, description, rating });
 
       this.description = undefined;
       this.title = undefined;
@@ -70,6 +76,7 @@ export default class MovieForm extends Component<MovieFormSignature> {
       await this.firebase.updateMovie(this.args.activeMovie.ref, {
         description: this.description as string,
         title: this.title as string,
+        rating: this.rating as string,
       });
       this.description = undefined;
       this.title = undefined;

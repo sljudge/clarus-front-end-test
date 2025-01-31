@@ -188,6 +188,9 @@ importers:
       ember-template-lint:
         specifier: ^5.13.0
         version: 5.13.0
+      ember-truth-helpers:
+        specifier: ^4.0.3
+        version: 4.0.3(ember-source@5.8.0(@babel/core@7.26.7)(@glimmer/component@1.1.2(@babel/core@7.26.7))(rsvp@4.8.5)(webpack@5.97.1))
       ember-welcome-page:
         specifier: ^7.0.2
         version: 7.0.2
@@ -3157,6 +3160,12 @@ packages:
     resolution: {integrity: sha512-TVx24/jrvDIuPL296DV0hBwp7BWLcSMf0I8464KGz01sPytAB+ZAePbc9ooBTJDkKZEGFgatJa4nj3yF1S9Bpw==}
     engines: {node: '>= 10'}
 
+  ember-functions-as-helper-polyfill@2.1.2:
+    resolution: {integrity: sha512-yvW6xykvZEIYzzwlrC/g9yu6LtLkkj5F+ho6U+BDxN1uREMgoMOZnji7sSILn5ITVpaJ055DPcO+utEFD7IZOA==}
+    engines: {node: '>= 14.0.0'}
+    peerDependencies:
+      ember-source: ^3.25.0 || >=4.0.0
+
   ember-getowner-polyfill@2.2.0:
     resolution: {integrity: sha512-rwGMJgbGzxIAiWYjdpAh04Abvt0s3HuS/VjHzUFhVyVg2pzAuz45B9AzOxYXzkp88vFC7FPaiA4kE8NxNk4A4Q==}
     engines: {node: ^4.5 || 6.* || >= 7.*}
@@ -3225,6 +3234,11 @@ packages:
   ember-tracked-storage-polyfill@1.0.0:
     resolution: {integrity: sha512-eL7lZat68E6P/D7b9UoTB5bB5Oh/0aju0Z7PCMi3aTwhaydRaxloE7TGrTRYU+NdJuyNVZXeGyxFxn2frvd3TA==}
     engines: {node: 12.* || >= 14}
+
+  ember-truth-helpers@4.0.3:
+    resolution: {integrity: sha512-T6Ogd3pk9FxYiZfSxdjgn3Hb3Ksqgw7CD23V9qfig9jktNdkNEHo4+3PA3cSD/+3a2kdH3KmNvKyarVuzdtEkA==}
+    peerDependencies:
+      ember-source: '>=3.28.0'
 
   ember-welcome-page@7.0.2:
     resolution: {integrity: sha512-TyaKxFIRXhODW5BTbqD/by0Gu8Z9B9AA1ki3Bzzm6fOj2b30Qlprtt+XUG52kS0zVNmxYj/WWoT0TsKiU61VOw==}
@@ -8332,26 +8346,6 @@ snapshots:
       - ember-source
       - supports-color
 
-  '@types/ember@4.0.11':
-    dependencies:
-      '@types/ember__application': 4.0.11(@babel/core@7.26.7)
-      '@types/ember__array': 4.0.10
-      '@types/ember__component': 4.0.22
-      '@types/ember__controller': 4.0.12
-      '@types/ember__debug': 4.0.8
-      '@types/ember__engine': 4.0.11
-      '@types/ember__error': 4.0.6
-      '@types/ember__object': 4.0.12(@babel/core@7.26.7)
-      '@types/ember__polyfills': 4.0.6
-      '@types/ember__routing': 4.0.22
-      '@types/ember__runloop': 4.0.10
-      '@types/ember__service': 4.0.9
-      '@types/ember__string': 3.0.15
-      '@types/ember__template': 4.0.7
-      '@types/ember__test': 4.0.6(@babel/core@7.26.7)
-      '@types/ember__utils': 4.0.7
-      '@types/rsvp': 4.0.9
-
   '@types/ember@4.0.11(@babel/core@7.26.7)':
     dependencies:
       '@types/ember__application': 4.0.11(@babel/core@7.26.7)
@@ -8387,11 +8381,6 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@types/ember__array@4.0.10':
-    dependencies:
-      '@types/ember': 4.0.11
-      '@types/ember__object': 4.0.12
-
   '@types/ember__array@4.0.10(@babel/core@7.26.7)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.26.7)
@@ -8399,11 +8388,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__component@4.0.22':
-    dependencies:
-      '@types/ember': 4.0.11
-      '@types/ember__object': 4.0.12
 
   '@types/ember__component@4.0.22(@babel/core@7.26.7)':
     dependencies:
@@ -8413,21 +8397,12 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@types/ember__controller@4.0.12':
-    dependencies:
-      '@types/ember__object': 4.0.12
-
   '@types/ember__controller@4.0.12(@babel/core@7.26.7)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.26.7)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__debug@4.0.8':
-    dependencies:
-      '@types/ember__object': 4.0.12
-      '@types/ember__owner': 4.0.9
 
   '@types/ember__debug@4.0.8(@babel/core@7.26.7)':
     dependencies:
@@ -8439,11 +8414,6 @@ snapshots:
 
   '@types/ember__destroyable@4.0.5': {}
 
-  '@types/ember__engine@4.0.11':
-    dependencies:
-      '@types/ember__object': 4.0.12
-      '@types/ember__owner': 4.0.9
-
   '@types/ember__engine@4.0.11(@babel/core@7.26.7)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.26.7)
@@ -8453,11 +8423,6 @@ snapshots:
       - supports-color
 
   '@types/ember__error@4.0.6': {}
-
-  '@types/ember__object@4.0.12':
-    dependencies:
-      '@types/ember': 4.0.11
-      '@types/rsvp': 4.0.9
 
   '@types/ember__object@4.0.12(@babel/core@7.26.7)':
     dependencies:
@@ -8471,26 +8436,15 @@ snapshots:
 
   '@types/ember__polyfills@4.0.6': {}
 
-  '@types/ember__routing@4.0.22':
-    dependencies:
-      '@types/ember': 4.0.11
-      '@types/ember__controller': 4.0.12
-      '@types/ember__object': 4.0.12
-      '@types/ember__service': 4.0.9
-
   '@types/ember__routing@4.0.22(@babel/core@7.26.7)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.26.7)
-      '@types/ember__controller': 4.0.12
+      '@types/ember__controller': 4.0.12(@babel/core@7.26.7)
       '@types/ember__object': 4.0.12(@babel/core@7.26.7)
-      '@types/ember__service': 4.0.9
+      '@types/ember__service': 4.0.9(@babel/core@7.26.7)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__runloop@4.0.10':
-    dependencies:
-      '@types/ember': 4.0.11
 
   '@types/ember__runloop@4.0.10(@babel/core@7.26.7)':
     dependencies:
@@ -8498,10 +8452,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__service@4.0.9':
-    dependencies:
-      '@types/ember__object': 4.0.12
 
   '@types/ember__service@4.0.9(@babel/core@7.26.7)':
     dependencies:
@@ -8520,10 +8470,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__utils@4.0.7':
-    dependencies:
-      '@types/ember': 4.0.11
 
   '@types/ember__utils@4.0.7(@babel/core@7.26.7)':
     dependencies:
@@ -10675,6 +10621,15 @@ snapshots:
       - encoding
       - supports-color
 
+  ember-functions-as-helper-polyfill@2.1.2(ember-source@5.8.0(@babel/core@7.26.7)(@glimmer/component@1.1.2(@babel/core@7.26.7))(rsvp@4.8.5)(webpack@5.97.1)):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-typescript: 5.3.0
+      ember-cli-version-checker: 5.1.2
+      ember-source: 5.8.0(@babel/core@7.26.7)(@glimmer/component@1.1.2(@babel/core@7.26.7))(rsvp@4.8.5)(webpack@5.97.1)
+    transitivePeerDependencies:
+      - supports-color
+
   ember-getowner-polyfill@2.2.0:
     dependencies:
       ember-cli-version-checker: 2.2.0
@@ -10852,6 +10807,14 @@ snapshots:
     dependencies:
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 5.7.2
+    transitivePeerDependencies:
+      - supports-color
+
+  ember-truth-helpers@4.0.3(ember-source@5.8.0(@babel/core@7.26.7)(@glimmer/component@1.1.2(@babel/core@7.26.7))(rsvp@4.8.5)(webpack@5.97.1)):
+    dependencies:
+      '@embroider/addon-shim': 1.9.0
+      ember-functions-as-helper-polyfill: 2.1.2(ember-source@5.8.0(@babel/core@7.26.7)(@glimmer/component@1.1.2(@babel/core@7.26.7))(rsvp@4.8.5)(webpack@5.97.1))
+      ember-source: 5.8.0(@babel/core@7.26.7)(@glimmer/component@1.1.2(@babel/core@7.26.7))(rsvp@4.8.5)(webpack@5.97.1)
     transitivePeerDependencies:
       - supports-color
 

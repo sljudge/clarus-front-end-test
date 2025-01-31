@@ -1,12 +1,16 @@
 <li class={{this.styleNamespace}} {{on "click" this.handleOnClick}}>
   <img src="/placeholder-image.webp" alt="movie image" />
   <div class="details">
-    <h2>
-      {{this.movie.title}}
-    </h2>
-
-    <p>
-      {{this.movie.description}}
-    </p>
+    <div class="text">
+      <h2>
+        {{this.movie.title}}
+      </h2>
+      <p>
+        {{this.movie.description}}
+      </p>
+    </div>
+    {{#if this.movie.rating}}
+      <MovieList::MovieListItem::StarRating @rating={{this.movie.rating}} />
+    {{/if}}
   </div>
 </li>
