@@ -1,0 +1,28 @@
+& {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 0 auto 2rem;
+  width: 900px;
+  max-width: 100%;
+  input {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+  }
+  button {
+    font-size: 1.5rem;
+    width: 125px;
+    height: 100%;
+    border: 0.2rem solid #cccccc;
+    border-radius: 0.5rem;
+    margin: auto;
+    cursor: pointer;
+    &:hover {
+      background: #d9f99d;
+    }
+  }
+}

@@ -30,7 +30,11 @@ export default class LandingPage extends Component<LandingPageSignature> {
    *   await deleteDoc(movie.ref);
    *
    */
-  @tracked movies: MovieSnapshot[];
+  @tracked movies: MovieSnapshot[] = [];
+
+  @tracked movieFormStatus: 'add' | 'edit' | null = null;
+
+  @tracked activeMovie: MovieSnapshot | undefined;
 
   @action async loadMovies() {
     const db = getFirestore();
@@ -41,6 +45,20 @@ export default class LandingPage extends Component<LandingPageSignature> {
     moviesSnapshot.forEach((doc) => movies.push(doc as MovieSnapshot));
 
     this.movies = movies;
+  }
+
+  @action closeMovieForm() {
+    this.movieFormStatus = null;
+  }
+
+  @action openAddMovieForm() {
+    this.activeMovie = undefined;
+    this.movieFormStatus = 'add';
+  }
+
+  @action openEditMovieForm(movie: MovieSnapshot) {
+    this.activeMovie = movie;
+    this.movieFormStatus = 'edit';
   }
 
   constructor(owner: unknown, args: {}) {

@@ -1,7 +1,9 @@
 <ul class={{this.styleNamespace}}>
+  <MovieList::AddNewMovieCta @onClick={{@handleAddMovieClick}} />
   {{#each @movies as |movie|}}
-    <MovieList::MovieListItem @movie={{movie}} />
-
-    <hr />
+    <MovieList::MovieListItem
+      @movie={{movie}}
+      @onClick={{@handleEditMovieClick}}
+    />
   {{/each}}
 </ul>

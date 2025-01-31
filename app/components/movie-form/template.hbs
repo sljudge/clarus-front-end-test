@@ -1,8 +1,8 @@
 <form class={{this.styleNamespace}} {{on "submit" this.addMovie}}>
   <label data-test-title-label>
-    <h2>
+    <span>
       Title
-    </h2>
+    </span>
     <Input
       @type="text"
       @value={{this.title}}
@@ -12,9 +12,9 @@
   </label>
 
   <label data-test-description-label>
-    <h2>
+    <span>
       Description
-    </h2>
+    </span>
     <Input
       @type="text"
       @value={{this.description}}
@@ -24,6 +24,20 @@
     />
   </label>
 
+  <label data-test-rating-label>
+    <span>
+      Rating
+    </span>
+    <select>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </label>
+
   {{#if this.errorMessage}}
     <div class="error-message">
       {{this.errorMessage}}
@@ -31,6 +45,6 @@
   {{/if}}
 
   <button type="submit">
-    Add Movie
+    {{this.ctaText}}
   </button>
 </form>

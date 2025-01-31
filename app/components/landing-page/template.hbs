@@ -1,7 +1,19 @@
 <div class={{this.styleNamespace}}>
   <MovieListHeader />
 
-  <MovieList @movies={{this.movies}} />
+  <MovieListSearchInput />
 
-  <AddMovieForm @loadMovies={{this.loadMovies}} />
+  <MovieList
+    @movies={{this.movies}}
+    @handleAddMovieClick={{this.openAddMovieForm}}
+    @handleEditMovieClick={{this.openEditMovieForm}}
+  />
+
+  <Modal @isOpen={{this.movieFormStatus}} @close={{this.closeMovieForm}}>
+    <MovieForm
+      @loadMovies={{this.loadMovies}}
+      @status={{this.movieFormStatus}}
+      @activeMovie={{this.activeMovie}}
+    />
+  </Modal>
 </div>

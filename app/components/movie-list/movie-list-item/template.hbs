@@ -1,4 +1,5 @@
-<li class={{this.styleNamespace}}>
+<li class={{this.styleNamespace}} {{on "click" this.handleOnClick}}>
+  <img src="/placeholder-image.webp" alt="movie image" />
   <div class="details">
     <h2>
       {{this.movie.title}}

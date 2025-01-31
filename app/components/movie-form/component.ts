@@ -5,35 +5,34 @@ import Component from '@glimmer/component';
 import podNames from 'ember-component-css/pod-names';
 import { service } from '@ember/service';
 
-import type { Firebase } from 'types';
+import type { Firebase, MovieSnapshot } from 'types';
 
-interface AddMovieFormSignature {
+interface MovieFormSignature {
   Args: {
+    activeMovie?: MovieSnapshot;
+    status: 'add' | 'edit' | null;
     loadMovies(): void;
   };
   Blocks: {
-    default: [
-      title: string, 
-      description: string,
-      errorMessage: string
-    ];
+    default: [title: string, description: string, errorMessage: string];
   };
   Element: HTMLFormElement;
 }
 
-export default class AddMovieForm extends Component<AddMovieFormSignature> {
-  styleNamespace = podNames['add-movie-form'];
+export default class MovieForm extends Component<MovieFormSignature> {
+  styleNamespace = podNames['movie-form'];
 
-  @service firebase:Firebase;
+  @service firebase: Firebase;
 
-  @tracked description: string | undefined;
+  @tracked description: string | undefined =
+    this.args.activeMovie?.data().description;
 
-  @tracked title: string | undefined;
+  @tracked title: string | undefined = this.args.activeMovie?.data().title;
 
-  @tracked errorMessage:string | undefined;
+  @tracked errorMessage: string | undefined;
 
   @action
-  async addMovie(event:SubmitEvent) {
+  async addMovie(event: SubmitEvent) {
     event.preventDefault();
 
     this.errorMessage = undefined;
@@ -41,7 +40,7 @@ export default class AddMovieForm extends Component<AddMovieFormSignature> {
     try {
       const { description, title } = this;
 
-      if(!description || !title){
+      if (!description || !title) {
         this.errorMessage = 'Title and description are required';
         return;
       }
@@ -55,5 +54,13 @@ export default class AddMovieForm extends Component<AddMovieFormSignature> {
     } catch (error: any) {
       this.errorMessage = error?.message;
     }
+  }
+
+  get ctaText() {
+    return this.args.status === 'add'
+      ? 'Add movie'
+      : this.args.status === 'edit'
+        ? 'Edit movie'
+        : '';
   }
 }
