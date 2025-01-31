@@ -1,7 +1,12 @@
 <div class={{this.styleNamespace}}>
   <MovieListHeader />
 
-  <MovieListSearchInput />
+  <MovieListSearchInput
+    @searchTerm={{this.searchTerm}}
+    @onSubmit={{this.searchMovies}}
+  />
+
+  {{log this.movies}}
 
   <MovieList
     @movies={{this.movies}}

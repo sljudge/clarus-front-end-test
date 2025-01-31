@@ -17,24 +17,15 @@ interface LandingPageSignature {
 export default class LandingPage extends Component<LandingPageSignature> {
   styleNamespace = podNames['landing-page'];
 
-  /**
-   * Once there are added movies this tracked property will contain an array of
-   * objects with a `data` method and `ref` property.
-   *
-   * The ref can be used with the firestore method `updateDoc` to update the record:
-   *
-   *   await updateDoc(movie.ref, { title: 'Updated Title' });
-   *
-   * The ref can also be used with the firestore method `deleteDoc` to delete the record:
-   *
-   *   await deleteDoc(movie.ref);
-   *
-   */
-  @tracked movies: MovieSnapshot[] = [];
+  @tracked allMovies: MovieSnapshot[] = [];
+
+  @tracked filteredMovies: MovieSnapshot[] = [];
 
   @tracked movieFormStatus: 'add' | 'edit' | null = null;
 
   @tracked activeMovie: MovieSnapshot | undefined;
+
+  @tracked searchTerm: string = '';
 
   @action async loadMovies() {
     const db = getFirestore();
@@ -44,7 +35,7 @@ export default class LandingPage extends Component<LandingPageSignature> {
 
     moviesSnapshot.forEach((doc) => movies.push(doc as MovieSnapshot));
 
-    this.movies = movies;
+    this.allMovies = movies;
     this.closeMovieForm();
   }
 
@@ -66,5 +57,23 @@ export default class LandingPage extends Component<LandingPageSignature> {
     super(owner, args);
 
     this.loadMovies();
+  }
+
+  get movies() {
+    if (this.searchTerm.length > 0) {
+      return this.allMovies.filter(
+        (movie) =>
+          movie
+            .get('title')
+            .toLowerCase()
+            .includes(this.searchTerm.toLowerCase()) ||
+          movie
+            .get('description')
+            .toLowerCase()
+            .includes(this.searchTerm.toLowerCase()),
+      );
+    } else {
+      return this.allMovies;
+    }
   }
 }
