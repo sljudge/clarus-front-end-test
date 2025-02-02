@@ -19,8 +19,6 @@ export default class LandingPage extends Component<LandingPageSignature> {
 
   @tracked allMovies: MovieSnapshot[] = [];
 
-  @tracked filteredMovies: MovieSnapshot[] = [];
-
   @tracked movieFormStatus: 'add' | 'edit' | null = null;
 
   @tracked activeMovie: MovieSnapshot | undefined;

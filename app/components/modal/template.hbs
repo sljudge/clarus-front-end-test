@@ -1,6 +1,6 @@
 {{#if @isOpen}}
   <div class={{this.styleNamespace}}>
-    <button class="close-cta" {{on "click" @close}}>X</button>
+    <button type="button" class="close-cta" {{on "click" @close}}>X</button>
     {{yield}}
   </div>
 {{/if}}

@@ -1,3 +1,9 @@
 <form class={{this.styleNamespace}}>
-  <Input @type="text" @value={{@searchTerm}} placeholder="Search for movies" />
+  <label data-test-movie-search-input>
+    <Input
+      @type="text"
+      @value={{@searchTerm}}
+      placeholder="Search for movies"
+    />
+  </label>
 </form>

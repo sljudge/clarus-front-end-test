@@ -6,12 +6,15 @@
   margin: 0 auto 2rem;
   width: 900px;
   max-width: 100%;
+  label {
+    flex-grow: 1;
+  }
   input {
+    width: 100%;
     font-size: 1.5rem;
     padding: 0.75rem;
     border: none;
     outline: none;
-    flex-grow: 1;
   }
   button {
     font-size: 1.5rem;

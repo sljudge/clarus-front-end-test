@@ -1,16 +1,18 @@
-<li class={{this.styleNamespace}} {{on "click" this.handleOnClick}}>
-  <img src="/placeholder-image.webp" alt="movie image" />
-  <div class="details">
-    <div class="text">
-      <h2>
-        {{this.movie.title}}
-      </h2>
-      <p>
-        {{this.movie.description}}
-      </p>
+<li class={{this.styleNamespace}}>
+  <button type="button" {{on "click" this.handleOnClick}}>
+    <img src="/placeholder-image.webp" alt="placeholder" />
+    <div class="details">
+      <div class="text">
+        <p class="title">
+          {{this.movie.title}}
+        </p>
+        <p>
+          {{this.movie.description}}
+        </p>
+      </div>
+      {{#if this.movie.rating}}
+        <MovieList::MovieListItem::StarRating @rating={{this.movie.rating}} />
+      {{/if}}
     </div>
-    {{#if this.movie.rating}}
-      <MovieList::MovieListItem::StarRating @rating={{this.movie.rating}} />
-    {{/if}}
-  </div>
+  </button>
 </li>
