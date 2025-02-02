@@ -6,6 +6,7 @@ import { getOwner } from '@ember/application';
 export default class WmsRoute extends Route {
   beforeModel() {
     const environment =
+      // @ts-expect-error - method does not exist on uknown 'owner'
       getOwner(this).resolveRegistration('config:environment');
 
     initializeApp(environment.firebase);
